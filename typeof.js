@@ -16,6 +16,7 @@ console.log(typeof {});
 console.log(typeof 0/0);
 console.log(typeof NaN);
 console.log(typeof []);
+console.log(typeof console.log);
 
 // examples of template literal
 console.log("\nTemplate literal:");
@@ -27,3 +28,5 @@ const str = `this is
 a text with
 multiple lines`;
 console.log(str);
+console.log("Hello %s", "Universe");
+console.log("Score: %d", 100);
