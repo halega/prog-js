@@ -32,3 +32,14 @@ function multiplier(factor) {
 
 let twice = multiplier(2);
 console.log("Twice:", twice(7));
+
+// Recursion example.
+function power(base, exponent) {
+    if (exponent == 0) {
+        return 1;
+    } else {
+        return base * power(base, exponent - 1);
+    }
+}
+
+console.log("power(2, 3) =", power(2, 3));
