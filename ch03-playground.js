@@ -44,18 +44,22 @@ function power(base, exponent) {
 
 console.log("power(2, 3) =", power(2, 3));
 
-function printFarmInventory(cows, chickens) {
-    let cowString = String(cows);
-    while (cowString.length < 3) {
-        cowString = "0" + cowString;
+// Growing functions
+function printZeroPaddedWithLabel(number, label) {
+    let numberString = String(number);
+    while (numberString.length < 3) {
+        numberString = "0" + numberString;
     }
-    console.log(`${cowString} Cows`);
-    let chickenString = String(chickens);
-    while (chickenString.length < 3) {
-        chickenString = "0" + chickenString;
-    }
-    console.log(`${chickenString} Chickens`);
+    console.log(`${numberString} ${label}`);
 }
-printFarmInventory(7, 11);
+
+function printFarmInventory(cows, chickens, pigs) {
+    printZeroPaddedWithLabel(cows, "Cows");
+    printZeroPaddedWithLabel(chickens, "Chickens");
+    printZeroPaddedWithLabel(pigs, "Pigs");
+}
+printFarmInventory(7, 11, 3);
+
+// Unicode symbols and .lenght
 console.log("Length of 😊 is", "😊".length);
 console.log("Length of п is", "п".length);
