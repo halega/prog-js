@@ -1,13 +1,16 @@
-// countBs counts the number of upper-case B letters in a str.
-function countBs(str) {
+// countChar counts the number of the chararcter in a str.
+function countChar(str, ch) {
     let count = 0;
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] == "B") {
+    for (c of str) {
+        if (c == ch) {
             count++;
         }
     }
     return count;
 }
+
+// countBs counts the number of upper-case B letters in a str.
+const countBs = str => countChar(str, "B");
 
 // Tests: countBs
 function testCountBs(str, expectedCount) {
