@@ -9,27 +9,48 @@ function isInteger(n) {
 function isEven(n) {
     // Assert: n is a non-negative integer.
     if (n < 0 || !isInteger(n)) {
-        return undefined;
+        return;
     }
 
     if (n == 0) {
         return true;
     } else if (n == 1) {
         return false;
-    } else {
-        return isEven(n - 2);
+    }
+    return isEven(n - 2);
+}
+
+// Alternative version of isEven:
+// - using standard Number.isInteger function;
+// - using switch statement.
+function isEven2(n) {
+    if (n < 0 || !Number.isInteger(n)) {
+        return;
+    }
+
+    switch (n) {
+        case 0:
+            return true;
+        case 1:
+            return false;
+        default:
+            return isEven(n - 2);
     }
 }
 
 // Tests: isInteger
 console.time("test isInteger");
-function testIsInteger(n, expected) {
-    actual = isInteger(n)
-    if (actual != expected) {
-        console.log(`Test failed: isInteger(${n}) got ${actual}; want ${expected}.`);
-    }
+// testFunc1 defines a test for a function with one argument.
+function testFunc1(func, funcName) {
+    return function(n, expected) {
+        actual = func(n);
+        if (actual != expected) {
+            console.log(`Test failed: ${funcName}(${n}) got ${actual}; want ${expected}`);
+        }
+    };
 }
 
+const testIsInteger = testFunc1(isInteger, "isInteger");
 testIsInteger(0, true);
 testIsInteger(1, true);
 testIsInteger(2, true)
@@ -43,22 +64,26 @@ console.timeEnd("test isInteger");
 
 // Tests: isEven
 console.time("test isEven");
-function testIsEven(n, expected) {
-    actual = isEven(n)
-    if (actual != expected) {
-        console.log(`Test failed: isEven(${n}) got ${actual}; want ${expected}`);
-    }
+let isEvenTestFuncs = [
+    testFunc1(isEven, "isEven"),
+    testFunc1(isEven2, "isEven2"),
+];
+for (const test of isEvenTestFuncs) {
+    test(0, true);
+    test(1, false);
+    test(2, true);
+    test(3, false);
+    test(10, true);
+    test(21, false);
+    test(-1, undefined);
+    test(1.1, undefined);
+    test(20.03, undefined);
+    test(10000, true);
+    test(10013, false);
 }
-
-testIsEven(0, true);
-testIsEven(1, false);
-testIsEven(2, true);
-testIsEven(3, false);
-testIsEven(10, true);
-testIsEven(21, false);
-testIsEven(-1, undefined);
-testIsEven(1.1, undefined);
-testIsEven(20.03, undefined);
-testIsEven(10000, true);
-testIsEven(10013, false);
 console.timeEnd("test isEven");
+
+let a1 = [1, 2, 3,];
+let a2 = [1, 2, 3];
+console.log(a1.length == a2.length);
+
