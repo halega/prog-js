@@ -8,15 +8,9 @@ function isInteger(n) {
 // floating-point numbers.
 function isEven(n) {
     // Assert: n is a non-negative integer.
-    if (n < 0 || !isInteger(n)) {
-        return;
-    }
-
-    if (n == 0) {
-        return true;
-    } else if (n == 1) {
-        return false;
-    }
+    if (n < 0 || !isInteger(n)) return;
+    if (n == 0) return true;
+    if (n == 1) return false;
     return isEven(n - 2);
 }
 
@@ -24,18 +18,17 @@ function isEven(n) {
 // - using standard Number.isInteger function;
 // - using switch statement.
 function isEven2(n) {
+    // Assert: n is a non-negative integer.
     if (n < 0 || !Number.isInteger(n)) {
         return;
     }
-
     switch (n) {
         case 0:
             return true;
         case 1:
             return false;
-        default:
-            return isEven(n - 2);
     }
+    return isEven(n - 2);
 }
 
 // Tests: isInteger
